@@ -54,6 +54,10 @@ async def shutdown():
     await database.disconnect()
 
 # Endpoints
+@app.get("/")
+async def root():
+    return {"message": "Bienvenido a la API de Usuarios. Accede a /docs para ver la documentación."}
+
 @app.post("/usuarios/", response_model=UsuarioResponse)
 async def crear_usuario(usuario: Usuario):
     # Verificar si el usuario ya existe

@@ -9,8 +9,14 @@ if os.environ.get('GITPOD_WORKSPACE_URL'):
     gitpod_workspace_url = os.environ.get('GITPOD_WORKSPACE_URL')
     # Convertir de https://workspace-id.gitpod.io a https://8000-workspace-id.gitpod.io
     API_URL = gitpod_workspace_url.replace('https://', 'https://8000-')
+    st.sidebar.success(f"Conectado a la API en GitPod: {API_URL}")
 else:
     API_URL = "http://localhost:8000"
+    st.sidebar.info(f"Conectado a la API local: {API_URL}")
+
+# Mostrar información de depuración en el sidebar
+st.sidebar.title("Información de conexión")
+st.sidebar.write(f"URL de la API: {API_URL}")
 
 st.title("Gestión de Usuarios")
 st.write("Aplicación para gestionar usuarios con DNI y nombre")
