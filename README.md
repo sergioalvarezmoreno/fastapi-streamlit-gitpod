@@ -27,7 +27,7 @@ Esta es una aplicación sencilla para gestionar usuarios, desarrollada con FastA
 
 1. Haz clic en el botón "Open in Gitpod" a continuación para abrir el proyecto en Gitpod:
 
-   [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/USUARIO/REPOSITORIO)
+   [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/sergioalvarezmoreno/fastapi-streamlit-gitpod)
 
 2. Gitpod configurará automáticamente el entorno y ejecutará la aplicación.
 3. Se abrirán automáticamente dos pestañas en el navegador:
