@@ -1,9 +1,16 @@
 import streamlit as st
 import requests
 import json
+import os
 
 # Configuración de la URL base de la API
-API_URL = "http://localhost:8000"
+# En Gitpod, usamos la variable de entorno GITPOD_WORKSPACE_URL si está disponible
+if os.environ.get('GITPOD_WORKSPACE_URL'):
+    gitpod_workspace_url = os.environ.get('GITPOD_WORKSPACE_URL')
+    # Convertir de https://workspace-id.gitpod.io a https://8000-workspace-id.gitpod.io
+    API_URL = gitpod_workspace_url.replace('https://', 'https://8000-')
+else:
+    API_URL = "http://localhost:8000"
 
 st.title("Gestión de Usuarios")
 st.write("Aplicación para gestionar usuarios con DNI y nombre")
