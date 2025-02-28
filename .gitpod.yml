@@ -1,4 +1,4 @@
-image: gitpod/workspace-python-3.9
+image: gitpod/workspace-postgres
 
 ports:
   - name: FastAPI
@@ -9,13 +9,33 @@ ports:
     port: 8501
     onOpen: open-browser
     visibility: public
+  - name: PostgreSQL
+    port: 5432
+    onOpen: ignore
+    visibility: private
 
 tasks:
+  - name: PostgreSQL
+    init: |
+      mkdir -p /workspace/postgres_data
+      pg_ctl start -D /workspace/postgres_data
+      createdb -h localhost -U gitpod usuarios
+    command: |
+      pg_ctl start -D /workspace/postgres_data
+      psql -h localhost -U gitpod -d postgres -c "CREATE DATABASE usuarios IF NOT EXISTS;"
+      psql -h localhost -U gitpod -d usuarios -c "CREATE TABLE IF NOT EXISTS usuarios (dni VARCHAR(20) PRIMARY KEY, nombre VARCHAR(100));"
+      echo "Base de datos PostgreSQL iniciada"
+      
   - name: Instalar dependencias y ejecutar aplicación
     init: |
       pip install -r requirements.txt
     command: |
       pip install -r requirements.txt
+      export POSTGRES_USER=gitpod
+      export POSTGRES_PASSWORD=gitpod
+      export POSTGRES_HOST=localhost
+      export POSTGRES_PORT=5432
+      export POSTGRES_DB=usuarios
       chmod +x start.sh
       ./start.sh
 
@@ -33,3 +53,5 @@ vscode:
   extensions:
     - ms-python.python
     - ms-python.vscode-pylance
+    - mtxr.sqltools
+    - mtxr.sqltools-driver-pg

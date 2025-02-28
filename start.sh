@@ -3,6 +3,7 @@
 # Mostrar información sobre el entorno
 echo "Iniciando servicios en GitPod..."
 echo "GITPOD_WORKSPACE_URL: $GITPOD_WORKSPACE_URL"
+echo "Conexión a PostgreSQL: $POSTGRES_USER:$POSTGRES_PASSWORD@$POSTGRES_HOST:$POSTGRES_PORT/$POSTGRES_DB"
 
 # Iniciar la API en segundo plano
 echo "Iniciando la API FastAPI..."
